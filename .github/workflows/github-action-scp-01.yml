@@ -18,7 +18,7 @@ jobs:
           source: actions-file.log
           target: /home/ubuntu
 
-      - name: From Github Actions to AWS EC2 through SCP
+      - name: From Github Actions to AWS EC2 through SCP - 2
         uses: appleboy/scp-action@v0.1.7
         with: 
           host: ${{ secrets.EC2_HOST }}
