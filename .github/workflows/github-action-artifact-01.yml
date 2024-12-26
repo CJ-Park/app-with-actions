@@ -6,7 +6,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Artifact workflow-01
+name: Artifact workflow-01 
 
 on:
   push:
