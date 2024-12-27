@@ -6,7 +6,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Artifact workflow-01
+name: App With Github Actions CI/CD
 
 on:
   push:
@@ -15,8 +15,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
-
+  ci:
     runs-on: ubuntu-latest
 
     steps:
@@ -27,6 +26,7 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+        
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
@@ -37,11 +37,22 @@ jobs:
       run: ls ./target
 
     - uses: actions/upload-artifact@v4
+      name: Upload Jar Artifact
       with:
         name: app.jar
         path: ./target/*.jar
-        
-    - name: Jar move from Github Actions to AWS EC2 through SCP
+
+  cd:
+    needs: ci
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Download Artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: app
+    
+    - name: Jar Artifact move from Github Actions to AWS EC2 through SCP
       uses: appleboy/scp-action@v0.1.7
       with: 
         host: ${{ secrets.EC2_HOST }}
@@ -50,7 +61,7 @@ jobs:
         source: ./target/app.jar
         target: /home/ubuntu/app
 
-    - name: Connecting EC2 through SSH
+    - name: Connecting EC2 through SSH And Execute Deployment Script
       uses: appleboy/ssh-action@v1.0.3
       with:
         host: ${{ secrets.EC2_HOST }}
