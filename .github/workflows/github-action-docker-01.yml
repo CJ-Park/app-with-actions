@@ -67,6 +67,6 @@ jobs:
              docker rm app-with-actions
            fi
             
-           docker image prune -f
+           docker image prune -af
            
            docker run -d -p 8080:8080 --name app-with-actions ${{ secrets.DOCKERHUB_USERNAME }}/app-with-actions:latest
