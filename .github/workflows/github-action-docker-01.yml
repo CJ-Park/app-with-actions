@@ -55,7 +55,7 @@ jobs:
 
     steps:
       - name: Connecting EC2 through SSH And Execute Docker Run Script
-      - uses: appleboy/ssh-action@v1.0.3
+        uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USERNAME }}
