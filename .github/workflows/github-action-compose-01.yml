@@ -1,4 +1,4 @@
-name: App With Github Actions with docker-compose CI/CD
+name: App With Github Actions with docker-compose CI/CD 
 
 on:
   push
