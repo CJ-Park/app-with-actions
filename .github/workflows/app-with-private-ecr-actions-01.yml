@@ -1,8 +1,9 @@
 name: Build and Push Docker Image To AWS private ECR 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch
+#   push:
+#     branches:
+#       - main
 
 jobs:
   build-push-image:
