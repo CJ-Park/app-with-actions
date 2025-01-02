@@ -1,4 +1,4 @@
-name: Build and Push Docker Image To AWS private ECR
+name: Build and Push Docker Image To AWS private ECR 
 on:
   push:
     branches:
